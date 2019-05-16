@@ -1,0 +1,55 @@
+############################################################
+#
+# Migrate-to-HPE-Synergy Configuration File
+#
+############################################################
+#
+# Credentials specific to the C7000 Onboard Administrator
+# and Virtual Connect environment
+#
+C7000_oaIpAddress            = <C7000 Onboard Administrator IP Address>
+C7000_oaUsername             = <C7000 Onboard Administrator Username>
+C7000_oaPassword             = <C7000 Onboard Administrator Password>
+C7000_vcmUsername            = <C7000 Virtual Connect Manager Username>
+C7000_vcmPassword            = <C7000 Virtual Connect Manager Password>
+
+#
+# Credentials and information specific to the intermediary
+# OneView v4.0 standalone appliance
+#
+OneView_IP                   = <OneView 4.0 Appliance IP Address>
+OneView_Username             = <OneView 4.0 Appliance Administrator Username>
+OneView_Password             = <OneView 4.0 Appliance Administrator Password>
+
+#
+# Credentials and information specific to the target
+# Synergy environment
+#
+Synergy_ComposerIP           = <Synergy Composer IP Address>
+Synergy_Username             = <Synergy Composer Username>
+Synergy_Password             = <Synergy Composer Password>
+Synergy_Enclosure_Group      = <Synergy Enclosure Group>
+Synergy_Server_Hardware_Type = <Synergy Server Hardware Type>
+Synergy_Power_On_Server      = <True | False>
+
+#
+# Synergy Configuration Parameter Overrides
+#
+# These parameters are optional and should be configured
+# when the Ethernet or Fibre Channel networks differ 
+# between the C7000 environment and the Synergy environment.
+# Typically the name of networks, the port ID and the
+# requested bandwidth 
+#
+Eth1_networkName_Override    =
+Eth1_portId_Override         =
+Eth1_requestedMbps_Override  =
+Eth2_networkName_Override    =
+Eth2_portId_Override         =
+Eth2_requestedMbps_Override  =
+FC1_networkName_Override     =
+FC1_portId_Override          =
+FC1_requestedMbps_Override   =
+FC2_networkName_Override     =
+FC2_portId_Override          =
+FC2_requestedMbps_Override   =
