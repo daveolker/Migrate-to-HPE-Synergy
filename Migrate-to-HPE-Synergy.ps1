@@ -386,6 +386,66 @@ function Create_Synergy_Server_Profiles {
 
             $ConnectionArray       += $Eth2_Conn
         }
+
+        if (Get-Variable -Name Eth3_networkName -ErrorAction SilentlyContinue) {
+            #
+            # Override Parameters from the Collected Profile
+            #
+            if (-not [String]::IsNullOrEmpty($Eth3_networkName_Override)) {
+                Set-Variable -Name Eth3_networkName -Value $Eth3_networkName_Override
+            }
+            if (-not [String]::IsNullOrEmpty($Eth3_portId_Override)) {
+                Set-Variable -Name Eth3_portId -Value $Eth3_portId_Override
+            }
+            if (-not [String]::IsNullOrEmpty($Eth3_requestedMbps_Override)) {
+                Set-Variable -Name Eth3_requestedMbps -Value $Eth3_requestedMbps_Override
+            }
+                        
+            $Eth3_OVNetwork        = Get-HPOVNetwork -Name $Eth3_networkName -ErrorAction Stop
+            $Eth3params = @{
+                ConnectionID       = $Eth3_ConnectionID;
+                ConnectionType     = $Eth3_functionType;
+                Name               = $Eth3_networkName;
+                Network            = $Eth3_OVNetwork;
+                PortId             = $Eth3_portId;
+                RequestedBW        = $Eth3_requestedMbps;
+            }
+            $Eth3_Conn             = New-HPOVServerProfileConnection @Eth3params
+            $Eth3_Conn.macType     = $Eth3_macType
+            $Eth3_Conn.mac         = $Eth3_macAddr
+
+            $ConnectionArray       += $Eth3_Conn
+        }
+
+        if (Get-Variable -Name Eth4_networkName -ErrorAction SilentlyContinue) {
+            #
+            # Override Parameters from the Collected Profile
+            #
+            if (-not [String]::IsNullOrEmpty($Eth4_networkName_Override)) {
+                Set-Variable -Name Eth4_networkName -Value $Eth4_networkName_Override
+            }
+            if (-not [String]::IsNullOrEmpty($Eth4_portId_Override)) {
+                Set-Variable -Name Eth4_portId -Value $Eth4_portId_Override
+            }
+            if (-not [String]::IsNullOrEmpty($Eth4_requestedMbps_Override)) {
+                Set-Variable -Name Eth4_requestedMbps -Value $Eth4_requestedMbps_Override
+            }
+                        
+            $Eth4_OVNetwork        = Get-HPOVNetwork -Name $Eth4_networkName -ErrorAction Stop
+            $Eth4params = @{
+                ConnectionID       = $Eth4_ConnectionID;
+                ConnectionType     = $Eth4_functionType;
+                Name               = $Eth4_networkName;
+                Network            = $Eth4_OVNetwork;
+                PortId             = $Eth4_portId;
+                RequestedBW        = $Eth4_requestedMbps;
+            }
+            $Eth4_Conn             = New-HPOVServerProfileConnection @Eth4params
+            $Eth4_Conn.macType     = $Eth4_macType
+            $Eth4_Conn.mac         = $Eth4_macAddr
+
+            $ConnectionArray       += $Eth4_Conn
+        }
     
         #
         # Create Fibre Channel Connections
@@ -539,5 +599,5 @@ if (Test-Path $config_file) {
 # Function Calls
 #
 ##############################################################################
-Collect_Data_from_C7000
+#Collect_Data_from_C7000
 Create_Synergy_Server_Profiles
