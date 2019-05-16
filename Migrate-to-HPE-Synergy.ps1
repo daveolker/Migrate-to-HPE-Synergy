@@ -599,5 +599,5 @@ if (Test-Path $config_file) {
 # Function Calls
 #
 ##############################################################################
-#Collect_Data_from_C7000
+Collect_Data_from_C7000
 Create_Synergy_Server_Profiles
