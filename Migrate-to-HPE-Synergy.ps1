@@ -113,6 +113,11 @@ function Collect_Data_from_C7000 {
     #
     $resp = Send-HPOVRequest -uri $buildUri -method GET
 
+    <#
+    # 
+    # Comment out the creation of FC and Ethernet network files
+    #
+
     #
     # Process the discovered Fibre Channel Networks
     #
@@ -157,6 +162,7 @@ function Collect_Data_from_C7000 {
             Add-Content -Path $EthFile $EthArray
         }
     }
+    #>
 
     #
     # Process the discovered Server Profiles
@@ -571,6 +577,17 @@ function Create_Synergy_Server_Profiles {
         #
         if ($Synergy_Power_On_Server -eq "True") {
             Start-HPOVServer -Server $ServerBlade | Wait-HPOVTaskComplete
+        }
+
+        #
+        # Check if the server profile was created successfully.  If so
+        # delete the previously created server profile file.
+        #
+        if (Get-HPOVServerProfile -Name $ServerProfileName) {
+            Write-Output "Server Profile '$ServerProfileName' successfully created."
+            Remove-Item -Path $ServerProfile
+        } else {
+            Write-Error "Server Profile '$ServerProfileName' was not created!"
         }
     }
 }
